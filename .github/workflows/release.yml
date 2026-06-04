@@ -5,6 +5,13 @@ on:
     tags:
       - 'v*'
 
+# Explicit top-level least-privilege permissions. The release job overrides
+# at job level to grant the contents:write it needs for publishing tags.
+# Top-level defaults to read-only so any future job we add inherits the
+# safest baseline (checkov CKV2_GHA_1).
+permissions:
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
