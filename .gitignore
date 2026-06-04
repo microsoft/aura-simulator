@@ -1,0 +1,40 @@
+# sbt
+target/
+**/target/
+project/target/
+project/project/
+.scala-build/
+
+# IDE
+.idea/
+.vscode/
+.metals/
+.bloop/
+.bsp/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Credentials
+.env
+.env.local
+*.pem
+*.key
+*.secret
+
+# Trace data (large files — see README for download instructions)
+data/
+
+# Local benchmark output (machine-specific, can grow large)
+benchmarks/results/
+
+# CloudSim comparison
+cloudsim-comparison/target/
+cloudsim-comparison/build/
+cloudsim-comparison/.gradle/

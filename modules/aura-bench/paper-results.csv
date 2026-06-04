@@ -1,0 +1,2 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
+"io.aura.bench.PaperIaasBenchmark.s1_small","avgt",1,5,23.076971,0.099767,"ms/op"

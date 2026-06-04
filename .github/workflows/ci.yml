@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ '17', '21' ]
+    name: Build & Test (Java ${{ matrix.java-version }})
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: ${{ matrix.java-version }}
+
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+
+      - name: Cache sbt
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.sbt
+            ~/.ivy2/cache
+            ~/.cache/coursier
+          key: sbt-${{ runner.os }}-${{ hashFiles('**/build.sbt', 'project/*.sbt', 'project/*.scala') }}
+          restore-keys: sbt-${{ runner.os }}-
+
+      - name: Compile
+        run: sbt compile
+
+      - name: Run tests  # 1,100+ tests across all modules
+        run: sbt test
+
+      - name: Check formatting
+        run: sbt scalafmtCheckAll
+
+  integration:
+    runs-on: ubuntu-latest
+    needs: build
+    name: Integration Tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+
+      - name: Cache sbt
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.sbt
+            ~/.ivy2/cache
+            ~/.cache/coursier
+          key: sbt-${{ runner.os }}-${{ hashFiles('**/build.sbt', 'project/*.sbt', 'project/*.scala') }}
+          restore-keys: sbt-${{ runner.os }}-
+
+      - name: Run all module tests
+        run: sbt test
+
+      - name: Verify examples compile
+        run: sbt auraExamples/compile

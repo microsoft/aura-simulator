@@ -1,0 +1,58 @@
+Aura: A Type-Safe, Multi-Paradigm Cloud Simulation Framework in Scala 3
+Copyright (c) Microsoft Corporation.
+
+Licensed under the MIT License. See LICENSE file for details.
+
+================================================================================
+Third-Party Notices
+
+This project depends on the following open-source software components. Aura does
+not bundle these dependencies in its source distribution; they are resolved at
+build time by sbt from public Maven repositories. This NOTICE is provided for
+transparency and attribution.
+
+================================================================================
+
+Scala (programming language and standard library)
+Copyright (c) Lightbend, Inc. dba Akka, EPFL, and contributors.
+Apache License 2.0 — https://www.apache.org/licenses/LICENSE-2.0
+
+Apache Pekko (typed actor toolkit)
+Copyright (c) The Apache Software Foundation.
+Apache License 2.0 — https://www.apache.org/licenses/LICENSE-2.0
+
+ScalaTest, ScalaCheck (testing frameworks)
+Copyright (c) Artima, Inc. and Rickard Nilsson.
+Apache License 2.0 — https://www.apache.org/licenses/LICENSE-2.0
+
+sbt (build tool)
+Copyright (c) sbt contributors.
+Apache License 2.0 — https://www.apache.org/licenses/LICENSE-2.0
+
+OpenJDK (Java runtime)
+Copyright (c) Oracle and/or its affiliates.
+GPL v2 with Classpath Exception — https://openjdk.org/legal/gplv2+ce.html
+
+CloudSim Plus (used only by the benchmark-comparison module; not a runtime
+dependency of Aura itself)
+Copyright (c) CloudSim Plus contributors.
+GPL v3 — https://www.gnu.org/licenses/gpl-3.0.html
+https://github.com/cloudsimplus/cloudsimplus
+
+Chart.js (used by the optional Scala.js visualization frontend)
+Copyright (c) Chart.js Contributors.
+MIT License — https://opensource.org/licenses/MIT
+
+Laminar (Scala.js UI library, used by the optional visualization frontend)
+Copyright (c) Nikita Gazarov.
+MIT License — https://opensource.org/licenses/MIT
+
+================================================================================
+Workload datasets referenced (not redistributed)
+
+Azure Functions 2019 Trace (Shahrad et al., USENIX ATC 2020)
+Available at https://github.com/Azure/AzurePublicDataset and used by Aura's
+validation pipeline only. This trace is not bundled with Aura; users must
+download it independently from the Azure Public Dataset repository.
+
+================================================================================

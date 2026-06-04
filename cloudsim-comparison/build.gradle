@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'io.aura.benchmark'
+version = '1.0.0'
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // CloudSim Plus — the artifact moved to org.cloudsimplus:cloudsim-plus
+    // Version 8.0.0 is the target; if unavailable Gradle will report clearly.
+    // Known recent versions: 7.3.2, 8.0.0+
+    implementation 'org.cloudsimplus:cloudsim-plus:8.0.0'
+}
+
+application {
+    mainClass = 'benchmark.CloudSimPlusBenchmark'
+}
+
+// Allow running with: ./gradlew run
+run {
+    // Give enough heap for the large scenario
+    jvmArgs = ['-Xmx8g', '-Xms512m']
+    // Pass through system properties
+    systemProperties System.getProperties()
+}
+
+// Create a fat JAR for standalone execution
+tasks.register('fatJar', Jar) {
+    archiveClassifier = 'all'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Main-Class': 'benchmark.CloudSimPlusBenchmark'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
