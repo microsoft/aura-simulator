@@ -1,5 +1,5 @@
 ThisBuild / version      := "1.0.0"
-ThisBuild / scalaVersion := "3.4.2"
+ThisBuild / scalaVersion := "3.8.4"
 ThisBuild / organization := "io.aura"
 
 // ─── Global settings ───────────────────────────────────────────────────────────
@@ -22,8 +22,8 @@ ThisBuild / Test / javaOptions ++= Seq("-Xmx1g", "-Xss2m")
 Global / concurrentRestrictions += Tags.limit(Tags.Test, 1)
 
 val PekkoVersion      = "1.1.3"
-val ScalaTestVersion  = "3.2.19"
-val ScalaCheckVersion = "1.18.1"
+val ScalaTestVersion  = "3.2.20"
+val ScalaCheckVersion = "1.19.0"
 
 lazy val commonDeps = Seq(
   "org.scalatest"     %% "scalatest"       % ScalaTestVersion  % Test,
@@ -35,7 +35,7 @@ lazy val pekkoDeps = Seq(
   "org.apache.pekko" %% "pekko-actor-typed"         % PekkoVersion,
   "org.apache.pekko" %% "pekko-actor-testkit-typed" % PekkoVersion % Test,
   "org.apache.pekko" %% "pekko-slf4j"               % PekkoVersion,
-  "ch.qos.logback"    % "logback-classic"           % "1.5.12"
+  "ch.qos.logback"    % "logback-classic"           % "1.5.34"
 )
 
 // ─── Root ──────────────────────────────────────────────────────────────────────
