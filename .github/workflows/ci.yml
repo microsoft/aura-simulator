@@ -20,7 +20,7 @@ jobs:
         java-version: [ '17', '21' ]
     name: Build & Test (Java ${{ matrix.java-version }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -55,7 +55,7 @@ jobs:
     needs: build
     name: Integration Tests
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Java
         uses: actions/setup-java@v4
