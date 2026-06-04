@@ -1,0 +1,45 @@
+# Dependabot configuration for Aura. Bumps sbt/JS/GitHub-Actions deps on a
+# weekly cadence so the project doesn't accumulate stale versions or known
+# CVEs. Security updates (for high-severity CVEs) run continuously and are
+# enabled separately at the repo level.
+#
+# Docs: https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # GitHub Actions in .github/workflows/
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Etc/UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # Scala / sbt dependencies. Dependabot picks up build.sbt and project/*.sbt.
+  - package-ecosystem: "sbt"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Etc/UTC"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+    labels:
+      - "dependencies"
+      - "scala"
+    # Group minor + patch bumps into a single PR per ecosystem to reduce
+    # review burden. Major bumps still get their own PR for visibility.
+    groups:
+      sbt-minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
