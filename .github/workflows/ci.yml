@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# Explicit top-level least-privilege permissions. Without this, the
+# GITHUB_TOKEN defaults to read+write on every scope (checkov CKV2_GHA_1).
+# CI only needs to read repo contents to check out and build.
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
