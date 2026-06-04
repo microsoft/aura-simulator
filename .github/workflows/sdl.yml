@@ -34,7 +34,7 @@ jobs:
       id-token: write          # Federation to Defender for DevOps
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: actions/setup-dotnet@v4
         with:
