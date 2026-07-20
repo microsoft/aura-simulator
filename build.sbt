@@ -35,7 +35,7 @@ lazy val pekkoDeps = Seq(
   "org.apache.pekko" %% "pekko-actor-typed"         % PekkoVersion,
   "org.apache.pekko" %% "pekko-actor-testkit-typed" % PekkoVersion % Test,
   "org.apache.pekko" %% "pekko-slf4j"               % PekkoVersion,
-  "ch.qos.logback"    % "logback-classic"           % "1.5.34"
+  "ch.qos.logback"    % "logback-classic"           % "1.5.38"
 )
 
 // ─── Root ──────────────────────────────────────────────────────────────────────
