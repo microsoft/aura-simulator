@@ -62,6 +62,14 @@ When reporting a bug, include:
 - Expected vs. actual behavior
 - Stack trace (if applicable)
 
+## Releases
+
+1. Update the version in `build.sbt` through a reviewed pull request.
+2. Tag the merged commit with the matching `v<version>` tag.
+3. The Release workflow runs tests and packages the production JARs into a draft
+   GitHub release. Confirm the workflow succeeded and inspect the assets,
+   including the packaged dashboard, before publishing the draft.
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
