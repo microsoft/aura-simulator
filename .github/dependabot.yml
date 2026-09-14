@@ -23,6 +23,8 @@ updates:
       - "github-actions"
 
   # Scala / sbt dependencies. Dependabot picks up build.sbt and project/*.sbt.
+    cooldown:
+      default-days: 7
   - package-ecosystem: "sbt"
     directory: "/"
     schedule:
