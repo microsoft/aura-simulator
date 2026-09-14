@@ -51,4 +51,6 @@ jobs:
         with:
           generate_release_notes: true
           files: |
-            modules/*/target/scala-*/aura-*.jar
+            target/out/*/scala-*/aura-*/aura-*.jar
+            !target/out/**/*-build/**
+            !target/out/**/*-tests.jar

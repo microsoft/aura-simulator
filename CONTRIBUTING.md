@@ -25,7 +25,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ## Getting Started
 
 1. Fork the repository and clone your fork.
-2. Install JDK 17+ and sbt 1.10+.
+2. Install JDK 17+ and sbt 2.0+.
 3. Build and run tests:
    ```bash
    sbt compile
