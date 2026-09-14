@@ -1,9 +1,9 @@
-ThisBuild / version      := "1.0.0"
-ThisBuild / scalaVersion := "3.9.0"
-ThisBuild / organization := "io.aura"
+version      := "1.0.0"
+scalaVersion := "3.9.0"
+organization := "io.aura"
 
 // ─── Global settings ───────────────────────────────────────────────────────────
-ThisBuild / scalacOptions ++= Seq(
+scalacOptions ++= Seq(
   "-Wunused:all",
   "-deprecation",
   "-feature",
@@ -12,11 +12,10 @@ ThisBuild / scalacOptions ++= Seq(
 )
 
 // Fork tests in a separate JVM to avoid Pekko classloader/thread issues
-ThisBuild / Test / fork               := true
-ThisBuild / Test / outputStrategy     := Some(StdoutOutput)
-ThisBuild / Test / testForkedParallel := false
-ThisBuild / Test / parallelExecution  := false
-ThisBuild / Test / javaOptions ++= Seq("-Xmx1g", "-Xss2m")
+Test / fork               := true
+Test / outputStrategy     := Some(StdoutOutput)
+Test / parallelExecution  := false
+Test / javaOptions ++= Seq("-Xmx1g", "-Xss2m")
 
 // Prevent parallel test execution across modules to avoid actor system resource contention
 Global / concurrentRestrictions += Tags.limit(Tags.Test, 1)
@@ -158,10 +157,10 @@ lazy val auraVizFrontend = (project in file("modules/aura-viz-frontend"))
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.NoModule) },
     Test / fork := false,
     libraryDependencies ++= Seq(
-      "org.scala-js"  %%% "scalajs-dom" % "2.8.0",
-      "com.raquo"     %%% "laminar"     % "17.2.0",
-      "com.lihaoyi"   %%% "upickle"     % "4.0.2",
-      "org.scalatest" %%% "scalatest"   % ScalaTestVersion % Test
+      "org.scala-js"  %% "scalajs-dom" % "2.8.0",
+      "com.raquo"     %% "laminar"     % "17.2.0",
+      "com.lihaoyi"   %% "upickle"     % "4.0.2",
+      "org.scalatest" %% "scalatest"   % ScalaTestVersion % Test
     )
   )
 
@@ -176,8 +175,10 @@ lazy val auraViz = (project in file("modules/aura-viz"))
       val jsDir  = (auraVizFrontend / Compile / fullLinkJS / scalaJSLinkerOutputDirectory).value
       val jsFile = jsDir / "main.js"
       val target = (Compile / resourceManaged).value / "dashboard" / "js" / "app.js"
-      IO.copyFile(jsFile, target)
-      Seq(target)
+      Def.uncached {
+        IO.copyFile(jsFile, target)
+        Seq(target)
+      }
     }.taskValue
   )
 

@@ -27,7 +27,7 @@ Aura is an actor-based discrete event simulation (DES) framework for cloud compu
 ### Prerequisites
 
 - JDK 17+
-- sbt 1.10+
+- sbt 2.0+
 
 ### Build & Test
 
