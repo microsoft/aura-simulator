@@ -14,7 +14,6 @@ scalacOptions ++= Seq(
 // Fork tests in a separate JVM to avoid Pekko classloader/thread issues
 Test / fork               := true
 Test / outputStrategy     := Some(StdoutOutput)
-Test / testForkedParallel := false
 Test / parallelExecution  := false
 Test / javaOptions ++= Seq("-Xmx1g", "-Xss2m")
 
