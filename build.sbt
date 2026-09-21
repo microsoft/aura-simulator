@@ -159,7 +159,7 @@ lazy val auraVizFrontend = (project in file("modules/aura-viz-frontend"))
     libraryDependencies ++= Seq(
       "org.scala-js"  %% "scalajs-dom" % "2.8.0",
       "com.raquo"     %% "laminar"     % "17.2.0",
-      "com.lihaoyi"   %% "upickle"     % "4.0.2",
+      "com.lihaoyi"   %% "upickle"     % "4.4.3",
       "org.scalatest" %% "scalatest"   % ScalaTestVersion % Test
     )
   )
